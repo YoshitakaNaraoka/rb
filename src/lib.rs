@@ -157,9 +157,9 @@ struct Inspector {
 /// let rb = SpscRb::new(1024);
 /// let (prod, cons) = (rb.producer(), rb.consumer());
 /// thread::spawn(move || {
-///     let gen = || {(-16..16+1).cycle().map(|x| x as f32/16.0)};
+///     let generator = || {(-16..16+1).cycle().map(|x| x as f32/16.0)};
 ///     loop {
-///         let data = gen().take(32).collect::<Vec<f32>>();
+///         let data = generator().take(32).collect::<Vec<f32>>();
 ///         prod.write(&data).unwrap();
 ///     }
 /// });
