@@ -197,7 +197,7 @@ impl<T: Clone + Copy + Default> SpscRb<T> {
 impl<T: Clone + Copy + Default> RB<T> for SpscRb<T> {
     fn clear(&self) {
         let mut buf = self.buf.lock().unwrap();
-        buf.iter_mut().map(|_| T::default()).count();
+        buf.iter_mut().for_each(|x| *x = Default::default());
         self.inspector.read_pos.store(0, Ordering::Relaxed);
         self.inspector.write_pos.store(0, Ordering::Relaxed);
     }
